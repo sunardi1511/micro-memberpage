@@ -110,6 +110,7 @@ opacity: 1;
 }
 
 
+
 .link-wrapped::before {
   @apply cursor-pointer z-10 inset-0 absolute;
   content: "";

@@ -36,7 +36,7 @@ const Sidebar = ({ pathName }) => {
           </div>
 
           <h6 className='text-white text-xl'>
-            {users?.name ??  "Username"}
+            {users?.name ?? "Username"}
           </h6>
 
           <span className='text-indigo-500 text-sm'>
@@ -52,7 +52,7 @@ const Sidebar = ({ pathName }) => {
             </li>
             <li>
               <a target="_blank" rel='noopener noreferrer' className={["nav-link relative flex items-center py-3 px-5 transition-all duration-200 hover:text-white active:text-white focus:outline-none w-full text-left text-indigo-500",
-                ].join(" ")} href={`${process.env.REACT_APP_FRONTPAGE_URL}/library`}>
+              ].join(" ")} href={`${process.env.REACT_APP_FRONTPAGE_URL}/library`}>
                 Library
               </a>
             </li>
@@ -75,12 +75,12 @@ const Sidebar = ({ pathName }) => {
           <ul className='main-menu my-12'>
             <li>
               <button className={["nav-link relative flex items-center py-3 px-5 transition-all duration-200 hover:text-white active:text-white focus:outline-none w-full text-left text-indigo-500",
-                ].join(" ")}
+              ].join(" ")}
                 onClick={logout}>
                 Log Out
               </button>
             </li>
-            </ul>
+          </ul>
 
         </div>
       </div>

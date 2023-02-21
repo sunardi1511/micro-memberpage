@@ -14,7 +14,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 import MyClass from "./pages/MyClass";
-import joined from "./pages/Joined";
+import Joined from "./pages/Joined";
+import DetailsClass from "./pages/DetailsClass";
 
 import { setAuthorizationHeader } from "../src/configs/axios";
 import users from "../src/constants/api/users";
@@ -47,7 +48,8 @@ function App() {
 
         
         <Route  path="/" element={<MembarRoute path="/"><MyClass/></MembarRoute>}/>
-        <Route  path="/joined/:class" element={<MembarRoute><joined/></MembarRoute>}/>
+        <Route  path="/joined/:class" element={<MembarRoute><Joined/></MembarRoute>}/>
+        <Route  path="/courses/:class" element={<MembarRoute><DetailsClass/></MembarRoute>}/>
 
         <Route path="*" element={<NotFound/>}/>
       </Routes>
