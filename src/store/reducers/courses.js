@@ -34,6 +34,19 @@ export default function (state = initialState, action) {
                 status: "error"
             }
 
+            case WATCH_COURSE: 
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    [action.payload.id]: {
+                        ...state.data[action.payload.id],
+                        ...action.payload
+                    }
+                },
+                status: "ok"
+            }
+
         default:
             return state;
     }

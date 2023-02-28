@@ -49,7 +49,8 @@ function App() {
         
         <Route  path="/" element={<MembarRoute path="/"><MyClass/></MembarRoute>}/>
         <Route  path="/joined/:class" element={<MembarRoute><Joined/></MembarRoute>}/>
-        <Route  path="/courses/:class" element={<MembarRoute><DetailsClass/></MembarRoute>}/>
+        <Route  path="/courses/:class/:chapter/:uid" element={<MembarRoute><DetailsClass/></MembarRoute>}/>
+        <Route  path="/courses/:class/" element={<MembarRoute><DetailsClass/></MembarRoute>}/>
 
         <Route path="*" element={<NotFound/>}/>
       </Routes>

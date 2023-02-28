@@ -10,7 +10,7 @@ export const fetchCourses = (courses) => ({
     payload: courses
 })
 
-export const watchCourse = (course) => ({
+export const watchCourses = (course) => ({
     type: WATCH_COURSE,
     payload: course
 })

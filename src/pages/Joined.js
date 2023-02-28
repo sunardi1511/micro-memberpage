@@ -33,7 +33,6 @@ const Joined = () => {
         courses.join(params.class).then((res) => {
             navigate(`/courses/${params.class}`)
         }).catch((err) => {
-            console.log('err', err)
             if (err?.response?.data?.message === "user already taken this course")
                 navigate(`/courses/${params.class}`)
         })
