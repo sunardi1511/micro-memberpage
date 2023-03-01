@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Youtube from 'react-youtube';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,11 +11,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const DetailsClass = () => {
 
+  const COURSES = useSelector(state => state.courses)
+  const [currentChapter, setCurrentChapter] = useState(COURSES?.data?.[params.class]?.chapters[0])
+  const [currentLessons, setCurrentLessons] = useState(currentChapter?.lessons?.[0])
   const params = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
-  const COURSES = useSelector(state => state.courses)
 
   useEffect(() => {
     window.scroll(0, 0)
@@ -34,19 +35,27 @@ const DetailsClass = () => {
   if (COURSES.status === "loading") return <Loading />
   if (COURSES.status === "error") return <Centered>{COURSES?.message ?? "error here"}</Centered>
 
-  let currentChapter, currentLessons
-  if (
-    COURSES.status === "ok" &&
-    COURSES?.data?.[params.class]?.chapters
-  ) {
-    currentChapter = COURSES?.data?.[params.class]?.chapters?.find(
-      (chapters) => +chapters.id === +params.chapters
-    ) ?? COURSES?.data?.[params.class]?.chapters[0];
+  useEffect(() => {
+    if (
+      COURSES.status === "ok" 
+    ) {
+      // setCurrentChapter(
+      //   COURSES?.data?.[params.class]?.chapters?.find(
+      //     (chapters) => +chapters.id === +params.chapters
+      //   )
+      // )
+      // setCurrentLessons(
+      //   currentChapter?.lessons?.find(
+      //     (lessons) => lessons.video === params.uid)
 
-    currentLessons = currentChapter?.lessons?.find(
-      (lessons) => lessons.video === params.uid)
-      ?? currentChapter?.lessons?.[0]
-  }
+      // )
+    }
+  }, [COURSES, params, setCurrentChapter, setCurrentLessons])
+
+
+
+
+  console.log('currentLessons', currentLessons)
 
   const nextVideo = () => { }
 

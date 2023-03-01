@@ -6,6 +6,7 @@ import { Link, useMatch, useMatches, useNavigate, useParams } from 'react-router
 
 const SidebarClass = ({ data, defaultUri }) => {
   const params = useParams()
+  const navigate = useNavigate()
 
 
   const getNavLinkClass = (path) => {
@@ -14,38 +15,38 @@ const SidebarClass = ({ data, defaultUri }) => {
       : "text-indigo-500"
   }
 
-  const list = []
+
+  const list = [];
   data.chapters.forEach((chapter, index) => {
     list.push(
       <li key={`${chapter.course_id}-${index}`}>
-        <span className="nav-header relative block py-3 px-5 text-white text-left">
-          {chapter?.name ?? "Chapter Name"}
+        <span className="nav-header relative block py-3 px-5 bg-indigo-800 text-white text-left">
+          {chapter?.name ?? "Chapter name"}
         </span>
       </li>
-    )
-    if (chapter?.lessons.length > 0) {
-      chapter.lessons.forEach((lessons, index2) => {
+    );
+    if (chapter?.lessons?.length > 0)
+      chapter.lessons.forEach((lesson, index2) => {
+        console.log('lesson', lesson)
         list.push(
-          <li key={`${chapter.course_id}-${lessons.id}-${index2}`}>
+          <li key={`${chapter.course_id}-${lesson.id}-${index2}`}>
             <Link
               className={[
-                "relative flex items-center py-3 px-5 hover:text-white transition-all duration-200 w-full text-left truncate ...",
+                "relative flex items-center py-3 px-5 transition-all duration-200 w-full text-left truncate ...",
                 getNavLinkClass(
-                  `/courses/${data.id}/${chapter.id}/${lessons.video}`
+                  `/courses/${data.id}/${chapter.id}/${lesson.video}`
                 ),
               ].join(" ")}
-              to={`/courses/${data.id}/${chapter.id}/${lessons.video}`}
+              to={`/courses/${data.id}/${chapter.id}/${lesson.video}`}
             >
-              {lessons?.name ?? "Lessons Name"}
+              {lesson?.name ?? "Lesson name"}
             </Link>
           </li>
-        )
-      })
-    }
-  })
+        );
+      });
+  });
 
 
-  console.log('list', data)
 
 
   return (
